@@ -29,7 +29,7 @@ RSpec.describe 'Movies Index Page' do
 
     click_link(movie_1.title)
 
-    expect(current_path).to eq("/users/#{@user1.id}/movies/#{movie_1.id}")
+    expect(current_path).to eq("/movies/#{movie_1.id}")
 
     expect(page).to have_content(movie_1.title)
     expect(page).to have_content(movie_1.description)
