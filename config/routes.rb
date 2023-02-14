@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   get '/login', to: "users#login_form"
   post '/login', to: "users#login_user"
   get '/logout', to: "users#logout_user"
-  get '/users/:user_id/movies/:movie_id/viewing_parties/new', to: 'viewing_parties#new'
-  post '/users/:user_id/movies/:movie_id/viewing_parties', to: 'viewing_parties#create'
+  get '/movies/:movie_id/viewing_parties/new', to: 'viewing_parties#new'
+  post 'movies/:movie_id/viewing_parties', to: 'viewing_parties#create'
   resources :users, only: :show
 end
 
