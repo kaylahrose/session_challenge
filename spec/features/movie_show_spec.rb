@@ -12,7 +12,12 @@ RSpec.describe 'Movies Index Page' do
   end
 
   it 'shows all movies' do
-    visit "users/#{@user1.id}"
+    visit login_path
+    fill_in 'email', with: @user1.email
+    fill_in 'password', with: @user1.password
+    click_button 'Log In'
+
+    visit '/dashboard'
 
     click_button 'Find Top Rated Movies'
 
