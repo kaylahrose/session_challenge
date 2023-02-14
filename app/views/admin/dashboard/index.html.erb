@@ -1,0 +1,4 @@
+<p>Default Users: </p>
+<% @default_users.each do |user| %>
+  <li><%= link_to user.email, "/admin/users/#{user.id}" %></li>
+<% end %>

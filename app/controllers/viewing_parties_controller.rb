@@ -1,6 +1,6 @@
 class ViewingPartiesController < ApplicationController
   def new
-    if session[:user_id] && current_user
+    if current_user
       @user = User.find(params[:user_id])
       @movie = Movie.find(params[:movie_id])
     else

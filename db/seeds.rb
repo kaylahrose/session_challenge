@@ -8,7 +8,9 @@
 
 i = 1
 
-20.times do 
-    Movie.create(title: "Movie #{i} Title", rating: rand(1..10), description: "This is a description about Movie #{i}")
-    i+=1
-end 
+20.times do
+  Movie.create(title: "Movie #{i} Title", rating: rand(1..10), description: "This is a description about Movie #{i}")
+  i += 1
+end
+
+User.create(name: 'admin', email: 'admin@email.com', password: 'admin', role: 'admin')

@@ -8,11 +8,14 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
   get '/movies', to: 'movies#index', as: 'movies'
   get '/movies/:id', to: 'movies#show', as: 'movie'
-  get '/login', to: "users#login_form"
-  post '/login', to: "users#login_user"
-  get '/logout', to: "users#logout_user"
+  get '/login', to: 'users#login_form'
+  post '/login', to: 'users#login_user'
+  get '/logout', to: 'users#logout_user'
   get '/movies/:movie_id/viewing_parties/new', to: 'viewing_parties#new'
   post 'movies/:movie_id/viewing_parties', to: 'viewing_parties#create'
-  resources :users, only: :show
+  
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+    resources :users, only: :show
+  end
 end
-

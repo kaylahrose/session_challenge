@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if session[:user_id] && current_user
+    if current_user
         @user = User.find(session[:user_id])
     else
       flash[:error] = "You must be logged in or registered to access your dashboard"
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
-      redirect_to user_path(user)
+      redirect_to '/dashboard'
     else
       flash[:error] = user.errors.full_messages.to_sentence
       redirect_to register_path
@@ -29,7 +29,11 @@ class UsersController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to "/users/#{user.id}"
+      if user.admin?
+        redirect_to admin_dashboard_path
+      else user.default?
+        redirect_to dashboard_path
+      end
     else
       flash[:error] = 'Bad Credentials, try again.'
       redirect_to '/login'
