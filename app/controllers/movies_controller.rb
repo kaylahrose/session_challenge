@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   def index
     if current_user
-      @user = User.find(params[:id])
+      @user = User.find(session[:user_id])
       @movies = Movie.all
     else
       flash[:error] = 'You must be logged in or registered to access your dashboard'

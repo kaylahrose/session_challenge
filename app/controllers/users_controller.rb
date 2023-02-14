@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     if session[:user_id] && current_user
-      @user = User.find(params[:id])
+        @user = User.find(session[:user_id])
     else
       flash[:error] = "You must be logged in or registered to access your dashboard"
       redirect_to root_path
